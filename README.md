@@ -21,4 +21,4 @@ Repo for classic algorithms implementation, and notes of interesting Leetcode qu
 ### Leetcode notes
 
 * [topK problem / 最大的 K 个数]
-* [single number / 出现次数]
+* [single number / 出现次数](notes/leetcode/single_number.md)
