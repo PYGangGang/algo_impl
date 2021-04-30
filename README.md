@@ -3,6 +3,7 @@
 ### about
 
 Repo for classic algorithms implementation, and notes of interesting Leetcode questions
+
 这是一个记录经典算法实现和有趣的力扣题目笔记的 repo
 
 ---
@@ -20,5 +21,5 @@ Repo for classic algorithms implementation, and notes of interesting Leetcode qu
 ---
 ### Leetcode notes
 
-* [topK problem / 最大的 K 个数]
+* [topK](notes/leetcode/topK.md)
 * [single number](notes/leetcode/single_number.md)
