@@ -16,6 +16,7 @@ Repo for classic algorithms implementation, and notes of interesting Leetcode qu
 ---
 ### data structure & algorithms notes
 
+* [堆 & 堆排序 & 优先队列](notes/ds_algo/堆&堆排序&优先队列.md)
 * [hash table / 哈希表](notes/ds_algo/散列表-hash_table-hash_fuction-哈希表-哈希冲突-collision-完美哈希-perfect_hash.md)
 
 ---
