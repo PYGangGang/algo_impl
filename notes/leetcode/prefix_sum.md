@@ -121,7 +121,6 @@ int numSubarraySumTarget(vector<int> &nums, int k) {
 ### [LC #523 连续的子数组和](https://leetcode-cn.com/problems/continuous-subarray-sum/) 前缀和数组也可以变一变
 
 > 给定一个包含 非负数 的数组和一个目标 整数 k ，编写一个函数来判断该数组是否含有连续的子数组，其大小至少为 2，且总和为 k 的倍数，即总和为 n * k ，其中 n 也是一个整数。
->
 
 如果不是找和为 k，而是找和为 k 的倍数的子数组，那么我们去存前缀和（目的是为了求得子数组的和）就不再高效了。此处我们可以存前缀和对 k 取余的值，若子数组 `i -> j` 的和为 k 的倍数，那么 `pre[i - 1] % k == pre[j] % k` （因为这俩一相减，就只剩一个 `k * 系数` 了。对于这道题需要稍微注意一下 `k * 0 = 0` 和 大小至少为 2 这两个条件：
 
@@ -152,3 +151,43 @@ bool checkSubarraySum(vector<int>& nums, int k) {
 * `x ^ x == 0` -> `(x1 ^ x2 ^ x3) ^ (x1 ^ x2) == x3`
 * 记前缀和数组 `pre[i]` 为 `0 -> i` 子数组的异或，那么任意子数组 `i -> j` 的异或值为 `pre[i - 1] ^ pre[j]`
 
+### [LC #1442 形成两个异或相等数组的三元组数目](https://leetcode-cn.com/problems/count-triplets-that-can-form-two-arrays-of-equal-xor/) 一道和之前前缀和 + 哈希表类似的异或题
+
+> 给你一个整数数组 `arr` 。
+>
+> 现需要从数组中取三个下标 `i`、`j` 和 `k` ，其中 (`0 <= i < j <= k < arr.length`) 。
+>
+> `a` 和 `b` 定义如下：
+>
+> `a = arr[i] ^ arr[i + 1] ^ ... ^ arr[j - 1]`
+> `b = arr[j] ^ arr[j + 1] ^ ... ^ arr[k]`
+> 注意：`^` 表示 按位异或 操作。
+>
+> 请返回能够令 `a == b` 成立的三元组 `(i, j , k)` 的数目。
+
+根据题意，对于任意满足要求的 `(i, k)` 总有 `arr[i] ^ arr[i + 1] ^ ... ^ arr[k] == 0`；而对于这个 `(i, k)`，我们可以轻松地证明，有 `k - i` 种分割方法可以得到有效的三元组 `(i, j, k)`；所以可以将目标简化为以下一点：
+
+* 寻找满足异或值为 0 的二元组 `(i, k)`，将 `k - i` 加入答案
+
+我们可以用暴力的方法取所有 `(i, k)` 算一遍就知道了，但是为了简化复杂度，自然想到前缀和方法（异或题寻找二元组常用）；当我们有了一个表示 `arr` 前缀和的数组 `vec`，我们可以暴力地算一遍找异或值为 0 的两个值；这里可以进一步简化，异或值为 0 代表这两个数相同，所以我们可以用一个哈希表来记录已经计算过的前缀和，如果当前计算得到的 `i` 的前缀和已经存在，则代表存在满足条件的若干 `(i, k)`：
+
+```cpp
+int countTriplets(vector<int>& arr) {
+    unordered_map<int, vector<int>> mp;
+    mp[0].push_back(-1); // 为了统一前缀和为 0 时，(0, i)的计算，加入一个特殊值
+    int cur = 0, size = arr.size(), res = 0;
+    for (int i = 0; i < size; ++i) {
+        cur ^= arr[i];
+        if (mp.find(cur) == mp.end()) mp[cur].push_back(i);
+        else {
+            for (int it : mp[cur]) res += choices(it + 1, i);
+            mp[cur].push_back(i);
+        }
+    }
+    return res;
+}
+inline int choices(int s, int e) {
+    if (e <= s) return 0;
+    return e - s;
+}
+```
