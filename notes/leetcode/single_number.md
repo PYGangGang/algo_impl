@@ -2,7 +2,7 @@
 ---
 这个题还挺有意思的，我感觉好多题都比较类似，来总结一下。
 
-最经典的就是 [lc #136](https://leetcode-cn.com/problems/single-number/)：
+最经典的就是 [LC #136 只出现一次的数字](https://leetcode-cn.com/problems/single-number/)：
 
 >给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。  
 example:  
@@ -29,7 +29,7 @@ int singleNumber(vector<int>& nums) {
 
 ---
 
-自然的，其他元素出现两次，也能出现三次；这个变种就是 [lc #137](https://leetcode-cn.com/problems/single-number-ii/)：
+自然的，其他元素出现两次，也能出现三次；这个变种就是 [LC #137 只出现一次的数字Ⅱ](https://leetcode-cn.com/problems/single-number-ii/)：
 
 >给你一个整数数组 nums ，除某个元素仅出现 一次 外，其余每个元素都恰出现 三次 。请你找出并返回那个只出现了一次的元素。  
 example:  
@@ -124,7 +124,7 @@ int singleNumber(vector<int>& nums) {
 
 ---
 
-再升级一下，带来一些新的思想 [lc #260](https://leetcode-cn.com/problems/single-number-iii/)：
+再升级一下，带来一些新的思想 [LC #260 只出现一次的数字Ⅲ](https://leetcode-cn.com/problems/single-number-iii/)：
 
 >给定一个整数数组 nums，其中恰好有两个元素只出现一次，其余所有元素均出现两次。 找出只出现一次的那两个元素。你可以按 任意顺序 返回答案。  
 example:  
