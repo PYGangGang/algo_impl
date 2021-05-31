@@ -24,3 +24,4 @@ Repo for classic algorithms implementation, and notes of interesting Leetcode qu
 
 * [topK](notes/leetcode/topK.md)
 * [single number](notes/leetcode/single_number.md)
+* [prefix sum](notes/leetcode/prefix_sum.md)
